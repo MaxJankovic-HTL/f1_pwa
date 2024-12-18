@@ -5,3 +5,8 @@ export const getTest = async () => {
   const { rows } = await query("SELECT 'It works' as test");
   return rows;
 };
+
+export const getAll = async () => {
+  const { rows } = await query('SELECT * FROM tracks');
+  return rows;
+};

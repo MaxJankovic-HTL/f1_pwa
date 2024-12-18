@@ -5,3 +5,7 @@ import * as model from '../model/trackModel.js';
 export const getTest = asyncHandler(async (req, res) => {
   res.status(200).json(await model.getTest());
 });
+
+export const getAll = asyncHandler(async (req, res) => {
+  res.status(200).json(await model.getAll());
+});
