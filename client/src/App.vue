@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const leftDrawerOpen = ref(false);
 const rightDrawerOpen = ref(false);
@@ -20,10 +20,7 @@ const toggleRightDrawer = () => {
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
-          </q-avatar>
-          Title
+          <q-img alt="Formel 1"></q-img>
         </q-toolbar-title>
 
         <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
@@ -31,7 +28,7 @@ const toggleRightDrawer = () => {
 
       <q-tabs align="left">
         <q-route-tab to="/" label="Home" />
-        <q-route-tab to="/about" label="About" />
+        <q-route-tab to="/about" label="Impressum" />
       </q-tabs>
     </q-header>
 
@@ -51,21 +48,21 @@ const toggleRightDrawer = () => {
 
 <style>
 @font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Lora';
-  src: url('/fonts/Lora/Lora-Regular.ttf') format('truetype');
+  font-family: "Lora";
+  src: url("/fonts/Lora/Lora-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'LibreBodoni';
-  src: url('/fonts/LibreBodoni/LibreBodoni-Regular.ttf') format('truetype');
+  font-family: "LibreBodoni";
+  src: url("/fonts/LibreBodoni/LibreBodoni-Regular.ttf") format("truetype");
 }
 
 * {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
 }
 </style>
