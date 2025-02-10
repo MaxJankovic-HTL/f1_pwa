@@ -22,8 +22,6 @@ const toggleRightDrawer = () => {
         <q-toolbar-title>
           <q-img alt="Formel 1"></q-img>
         </q-toolbar-title>
-
-        <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
       </q-toolbar>
 
       <q-tabs align="left">
