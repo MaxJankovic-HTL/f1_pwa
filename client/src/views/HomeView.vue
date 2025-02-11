@@ -14,7 +14,7 @@ const columns = [
     align: 'left',
     field: 'name',
   },
-  { name: 'breitengrad', align: 'center', label: 'Breitengrad', required: true, field: 'breitengrad' },
+  { name: 'breitengrad', label: 'Breitengrad', required: true, field: 'breitengrad' },
   { name: 'laengengrad', label: 'Laengengrad', required: true, field: 'laengengrad' },
   { name: 'img', label: 'Bilder', field: 'img' },
   { name: 'baujahr', label: 'Baujahr', field: 'baujahr' }
@@ -30,5 +30,8 @@ const columns = [
       :columns="columns"
       row-key="id"
     />
+    <!-- Testweise Track-Daten direkt ausgeben -->
+    <pre>{{ store.track }}</pre>
   </div>
 </template>
+

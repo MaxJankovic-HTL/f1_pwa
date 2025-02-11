@@ -2,25 +2,22 @@
 import { ref } from "vue";
 
 const leftDrawerOpen = ref(false);
-const rightDrawerOpen = ref(false);
 
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 };
 
-const toggleRightDrawer = () => {
-  rightDrawerOpen.value = !rightDrawerOpen.value;
-};
 </script>
 
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hHh LpR lFf">
     <q-header elevated class="bg-primary text-white" height-hint="98">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
           <q-img alt="Formel 1"></q-img>
+          Formel 1
         </q-toolbar-title>
       </q-toolbar>
 
@@ -31,10 +28,6 @@ const toggleRightDrawer = () => {
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" side="left" bordered>
-      <!-- drawer content -->
-    </q-drawer>
-
-    <q-drawer v-model="rightDrawerOpen" side="right" bordered>
       <!-- drawer content -->
     </q-drawer>
 
