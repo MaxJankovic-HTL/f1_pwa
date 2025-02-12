@@ -25,13 +25,10 @@ const columns = [
 <template>
   <div class="column items-center q-mt-md">
     <q-table
-      title="Treats"
       :rows="store.track"
       :columns="columns"
       row-key="id"
     />
-    <!-- Testweise Track-Daten direkt ausgeben -->
-    <pre>{{ store.track }}</pre>
   </div>
 </template>
 
