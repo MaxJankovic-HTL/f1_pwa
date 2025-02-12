@@ -16,7 +16,7 @@ const toggleLeftDrawer = () => {
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
-          <img alt="Formel 1"></img>
+          <img alt="Formel 1" src="../public/images/f1.png"></img>
         </q-toolbar-title>
       </q-toolbar>
 
