@@ -1,3 +1,45 @@
 GET http://localhost:3000/track/test
 ###
 GET http://localhost:3000/track
+###
+POST http://localhost:3000/track
+Content-Type: application/json
+
+{
+  "name": "Imola Circuit",
+  "bg": 44.341111,
+  "lg": 11.713333,
+  "bj": '1969-06-26'
+}
+
+###
+POST http://localhost:3000/track
+Content-Type: application/json
+
+{
+  "name": "Imola Circuit",
+  "bj": '1969-06-26'
+}
+
+###
+PATCH http://localhost:3000/track/5
+Content-Type: application/json
+
+{
+  "name": "Autodromo Internazionale Enzo e Dino Ferrari"
+}
+
+###
+PATCH http://localhost:3000/track/5
+###
+PATCH http://localhost:3000/track/9
+Content-Type: application/json
+
+{
+  "name": "Autodromo Internazionale Enzo e Dino Ferrari"
+}
+
+###
+DELETE http://localhost:3000/track/5
+###
+DELETE http://localhost:3000/track/9
