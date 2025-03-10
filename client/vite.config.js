@@ -16,10 +16,10 @@ export default defineConfig({
     }),
     VitePWA({
       manifest,
-      includeAssets: ['**/*.{js,css,html,ico,jpg,png,svg,ttf,jpeg}'],
+      includeAssets: ['*/.{js,css,html,ico,jpg,png,svg,ttf,jpeg}'],
       strategies: 'injectManifest',
       srcDir: 'src',
-      filename: 'custom-service-worker.js',
+      filename: 'custom.service.worker.js',
     }),
 
     quasar({
@@ -33,6 +33,5 @@ export default defineConfig({
   },
   preview: {
     port: 4175,
-   
   },
 });
