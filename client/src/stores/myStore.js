@@ -12,5 +12,19 @@ export const useMyStore = defineStore('myStore', () => {
     console.log(track.value);
   }
 
-  return { track, fetchdata };
+  const deletedata = async (track) => {
+    await axios.delete(base_url + `/track/${track.id}`);
+    fetchdata();
+  }
+
+  const patchdata = async (track, name) => {
+    await axios.patch(base_url + `/track/${track.id}`, name);
+    fetchdata();
+  };
+
+  const postdata = async (name, bg, lg, bj) => {
+    await axios.post(base_url + '/track', name, bg, lg, bj);
+  };
+
+  return { track, fetchdata, deletedata, patchdata, postdata };
 });
