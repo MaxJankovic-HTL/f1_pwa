@@ -22,6 +22,7 @@ const toggleLeftDrawer = () => {
 
       <q-tabs align="left">
         <q-route-tab to="/" label="Home" />
+        <q-route-tab to="/data" label="Daten" />
         <q-route-tab to="/about" label="Impressum" />
       </q-tabs>
     </q-header>
