@@ -9,7 +9,7 @@ Content-Type: application/json
   "name": "Imola Circuit",
   "bg": 44.341111,
   "lg": 11.713333,
-  "bj": '1969-06-26'
+  "bj": "1969-06-26"
 }
 
 ###
@@ -18,7 +18,7 @@ Content-Type: application/json
 
 {
   "name": "Imola Circuit",
-  "bj": '1969-06-26'
+  "bj": "1969-06-26"
 }
 
 ###
