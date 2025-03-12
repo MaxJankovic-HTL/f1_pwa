@@ -67,9 +67,9 @@ function confirmNewTrack() {
 
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
-          <q-btn color="red" @click="deleteTrack(props.row)">Löschen</q-btn>
-          <q-btn color="amber" icon="edit" @click="openChangeDialog(props.row)">Ändern</q-btn>
-          <q-btn color="primary" @click="openNewDialog">Neuen Track hinzufügen</q-btn>
+          <q-btn color="secondary" class="q-mx-md" @click="deleteTrack(props.row)">Löschen</q-btn>
+          <q-btn color="quaternary" icon="edit" class="q-mx-md" @click="openChangeDialog(props.row)">Ändern</q-btn>
+          <q-btn color="tertiary" class="q-mx-md" @click="openNewDialog">Neuen Track hinzufügen</q-btn>
         </q-td>
       </template>
     </q-table>
@@ -85,7 +85,7 @@ function confirmNewTrack() {
         </q-card-section>
         <q-card-actions align="right">
           <q-btn flat label="Abbrechen" v-close-popup />
-          <q-btn color="primary" label="Speichern" @click="confirmChangeTrackName()" />
+          <q-btn color="quaternary" label="Speichern" @click="confirmChangeTrackName()" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -104,7 +104,7 @@ function confirmNewTrack() {
         </q-card-section>
         <q-card-actions align="right">
           <q-btn flat label="Abbrechen" v-close-popup />
-          <q-btn color="primary" label="Erstellen" @click="confirmNewTrack()" />
+          <q-btn color="quaternary" label="Erstellen" @click="confirmNewTrack()" />
         </q-card-actions>
       </q-card>
     </q-dialog>

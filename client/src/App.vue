@@ -11,24 +11,35 @@ const toggleLeftDrawer = () => {
 
 <template>
   <q-layout view="hHh LpR lFf">
-    <q-header elevated class="bg-primary text-white" height-hint="98">
+    <q-header elevated class="bg-white text-primary" height-hint="98">
       <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" class="lt-md"/>
 
         <q-toolbar-title>
-          <img alt="Formel 1" src="../public/images/f1.png"></img>
+          <q-img class="q-ma-md" alt="Formel 1" src="../public/images/newf1.png" width="150px" />
         </q-toolbar-title>
       </q-toolbar>
 
-      <q-tabs align="left">
-        <q-route-tab to="/" label="Home" />
-        <q-route-tab to="/data" label="Daten" />
-        <q-route-tab to="/about" label="Impressum" />
+      <q-tabs v-if="!$q.screen.lt.md" align="left">
+        <q-route-tab to="/" label="Home"/>
+        <q-route-tab to="/data" label="Daten"/>
+        <q-route-tab to="/about" label="Impressum"/>
       </q-tabs>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" side="left" bordered>
-      <!-- drawer content -->
+      <q-list>
+        <q-item-label header> Navigation </q-item-label>
+        <q-item clickable v-ripple to="/">
+          <q-item-section class="text-primary">Home</q-item-section>
+        </q-item>
+        <q-item clickable v-ripple to="/data">
+          <q-item-section class="text-primary">Daten</q-item-section>
+        </q-item>
+        <q-item clickable v-ripple to="/about">
+          <q-item-section class="text-primary">Impressum</q-item-section>
+        </q-item>
+      </q-list>
     </q-drawer>
 
     <q-page-container>
