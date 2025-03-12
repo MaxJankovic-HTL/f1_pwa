@@ -1,24 +1,32 @@
 <script setup>
-var target = document.getElementById('target');
-var watchId;
+import { onMounted } from 'vue';
 
-function appendLocation(location, verb) {
-  verb = verb || 'updated';
-  var newLocation = document.createElement('p');
-  newLocation.innerHTML = 'Location ' + verb + ': ' + location.coords.latitude + ', ' + location.coords.longitude + '';
+let target;
+let watchId;
+
+function appendLocation(location, verb = 'updated') {
+  const newLocation = document.createElement('p');
+  newLocation.innerHTML = `Location ${verb}: ${location.coords.latitude}, ${location.coords.longitude}`;
   target.appendChild(newLocation);
 }
 
-if ('geolocation' in navigator) {
-  document.getElementById('askButton').addEventListener('click', function () {
-    navigator.geolocation.getCurrentPosition(function (location) {
-      appendLocation(location, 'fetched');
+onMounted(() => {
+  target = document.getElementById('target');
+  const askButton = document.getElementById('askButton');
+
+  if (!askButton) return;
+
+  if ('geolocation' in navigator) {
+    askButton.addEventListener('click', () => {
+      navigator.geolocation.getCurrentPosition((location) => {
+        appendLocation(location, 'fetched');
+      });
+      watchId = navigator.geolocation.watchPosition(appendLocation);
     });
-    watchId = navigator.geolocation.watchPosition(appendLocation);
-  });
-} else {
-  target.innerText = 'Geolocation API not supported.';
-}
+  } else {
+    target.innerText = 'Geolocation API not supported.';
+  }
+});
 </script>
 
 <template>
@@ -26,6 +34,4 @@ if ('geolocation' in navigator) {
     <button id="askButton">Ask for location</button>
     <div id="target"></div>
   </div>
-  
 </template>
-

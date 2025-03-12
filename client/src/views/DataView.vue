@@ -1,10 +1,12 @@
 <script>
-import { useMyStore } from '../stores/myStore';
-import { ref } from 'vue';
+import { useTrackStore } from '../stores/trackStore.js';
+import { onMounted, ref } from 'vue';
 
-const store = useMyStore();
+const store = useTrackStore();
 
-store.fetchdata();
+// onMounted(() => {
+//   store.fetchdata();
+// });
 
 const columns = [
   { name: 'name', required: true, label: 'Name', align: 'center', field: 'name' },
@@ -59,6 +61,7 @@ function confirmNewTrack() {
 <template>
   <div class="column items-center q-mt-md">
     <q-table
+      v-if="store.track"
       :rows="store.track"
       :columns="columns"
       row-key="id"
@@ -84,7 +87,7 @@ function confirmNewTrack() {
         </q-card-section>
         <q-card-actions align="right">
           <q-btn flat label="Abbrechen" v-close-popup />
-          <q-btn color="primary" label="Speichern" @click="confirmChangeTrackName" />
+          <q-btn color="primary" label="Speichern" @click="confirmChangeTrackName()" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -103,7 +106,7 @@ function confirmNewTrack() {
         </q-card-section>
         <q-card-actions align="right">
           <q-btn flat label="Abbrechen" v-close-popup />
-          <q-btn color="primary" label="Erstellen" @click="confirmNewTrack" />
+          <q-btn color="primary" label="Erstellen" @click="confirmNewTrack()" />
         </q-card-actions>
       </q-card>
     </q-dialog>

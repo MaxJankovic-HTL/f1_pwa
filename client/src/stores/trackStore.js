@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from 'axios';
 
-export const useMyStore = defineStore('myStore', () => {
+export const useTrackStore = defineStore('trackStore', () => {
   const track = ref([]);
   const base_url = import.meta.env.VITE_BASE_URL;
 
@@ -25,6 +25,8 @@ export const useMyStore = defineStore('myStore', () => {
   const postdata = async (name, bg, lg, bj) => {
     await axios.post(base_url + '/track', name, bg, lg, bj);
   };
+
+  fetchdata();
 
   return { track, fetchdata, deletedata, patchdata, postdata };
 });
