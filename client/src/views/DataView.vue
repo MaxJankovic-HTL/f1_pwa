@@ -67,7 +67,7 @@ function confirmNewTrack() {
 
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
-          <q-btn color="red" icon="trash_can" @click="deleteTrack(props.row)">Löschen</q-btn>
+          <q-btn color="red" @click="deleteTrack(props.row)">Löschen</q-btn>
           <q-btn color="amber" icon="edit" @click="openChangeDialog(props.row)">Ändern</q-btn>
           <q-btn color="primary" @click="openNewDialog">Neuen Track hinzufügen</q-btn>
         </q-td>
@@ -100,7 +100,7 @@ function confirmNewTrack() {
           <q-input v-model="newTrackData.name" label="Name" />
           <q-input v-model="newTrackData.breitengrad" label="Breitengrad" type="number" />
           <q-input v-model="newTrackData.laengengrad" label="Längengrad" type="number" />
-          <q-input v-model="newTrackData.baujahr" label="Baujahr" type="number" />
+          <q-input v-model="newTrackData.baujahr" label="Baujahr"/>
         </q-card-section>
         <q-card-actions align="right">
           <q-btn flat label="Abbrechen" v-close-popup />
