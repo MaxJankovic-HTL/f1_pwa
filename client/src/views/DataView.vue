@@ -1,8 +1,9 @@
-<script>
+<script setup>
 import { useTrackStore } from '../stores/trackStore.js';
 import { ref } from 'vue';
 
 const store = useTrackStore();
+
 store.fetchdata();
 
 const columns = [
