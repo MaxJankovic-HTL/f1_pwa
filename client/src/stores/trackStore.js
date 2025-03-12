@@ -18,12 +18,18 @@ export const useTrackStore = defineStore('trackStore', () => {
   }
 
   const patchdata = async (track, name) => {
-    await axios.patch(base_url + `/track/${track.id}`, name);
+    await axios.patch(`${base_url}/track/${track.id}`, { name });
     fetchdata();
   };
 
-  const postdata = async (name, bg, lg, bj) => {
-    await axios.post(base_url + '/track', name, bg, lg, bj);
+  const postdata = async (name, breitengrad, laengengrad, baujahr) => {
+    await axios.post(`${base_url}/track`, {
+      name,
+      bg: breitengrad,
+      lg: laengengrad,
+      bj: baujahr,
+    });
+    fetchdata();
   };
 
   return { track, fetchdata, deletedata, patchdata, postdata };

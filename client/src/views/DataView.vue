@@ -43,6 +43,14 @@ function openNewDialog() {
 }
 
 function confirmNewTrack() {
+  if (!newTrackData.value.name || 
+      !newTrackData.value.breitengrad || 
+      !newTrackData.value.laengengrad || 
+      !newTrackData.value.baujahr) {
+    console.error('Alle Felder sind erforderlich');
+    return;
+  }
+  
   store.postdata(
     newTrackData.value.name,
     newTrackData.value.breitengrad,
@@ -50,6 +58,8 @@ function confirmNewTrack() {
     newTrackData.value.baujahr
   );
   showNewDialog.value = false;
+  
+  newTrackData.value = { name: '', breitengrad: '', laengengrad: '', baujahr: '' };
 }
 </script>
 
@@ -71,15 +81,15 @@ function confirmNewTrack() {
           <q-card flat bordered>
             <q-card-section>
               <div class="text-h6">{{ props.row.name || 'Track' }}</div>
-            {{ props.row.breitengrad }}
-            {{ props.row.laengengrad }}
+            {{ props.row.breitengrad }}<br>
+            {{ props.row.laengengrad }}<br>
             {{ props.row.baujahr }}
             </q-card-section>
             <q-separator />
             <q-card-actions>
               <q-btn color="secondary" dense @click="deleteTrack(props.row)">Löschen</q-btn>
-              <q-btn color="quaternary" icon="edit" dense @click="openChangeDialog(props.row)">Ändern</q-btn>
-              <q-btn color="tertiary" dense @click="openNewDialog">Neuen Track</q-btn>
+              <q-btn color="info" icon="edit" dense @click="openChangeDialog(props.row)">Ändern</q-btn>
+              <q-btn color="positive" dense @click="openNewDialog">Neuen Track</q-btn>
             </q-card-actions>
           </q-card>
         </div>
@@ -89,8 +99,8 @@ function confirmNewTrack() {
         <q-td :props="props">
           <div class="row no-wrap q-gutter-sm justify-center">
             <q-btn color="secondary" @click="deleteTrack(props.row)">Löschen</q-btn>
-            <q-btn color="quaternary" icon="edit" @click="openChangeDialog(props.row)">Ändern</q-btn>
-            <q-btn color="tertiary" @click="openNewDialog">Neuen Track</q-btn>
+            <q-btn color="info" icon="edit" @click="openChangeDialog(props.row)">Ändern</q-btn>
+            <q-btn color="positive" @click="openNewDialog">Neuen Track</q-btn>
           </div>
         </q-td>
       </template>
@@ -106,7 +116,7 @@ function confirmNewTrack() {
         </q-card-section>
         <q-card-actions align="right">
           <q-btn flat label="Abbrechen" v-close-popup />
-          <q-btn color="quaternary" label="Speichern" @click="confirmChangeTrackName()" />
+          <q-btn color="info" label="Speichern" @click="confirmChangeTrackName()" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -124,7 +134,7 @@ function confirmNewTrack() {
         </q-card-section>
         <q-card-actions align="right">
           <q-btn flat label="Abbrechen" v-close-popup />
-          <q-btn color="quaternary" label="Erstellen" @click="confirmNewTrack()" />
+          <q-btn color="info" label="Erstellen" @click="confirmNewTrack()" />
         </q-card-actions>
       </q-card>
     </q-dialog>
