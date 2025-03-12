@@ -7,8 +7,8 @@ export const useTrackStore = defineStore('trackStore', () => {
   const base_url = import.meta.env.VITE_BASE_URL;
 
   const fetchdata = async () => {
-    const { data } = await axios.get(base_url+'/track');
-    track.value = data;
+    const res = await axios.get(base_url+'/track');
+    track.value = res.data;
     console.log(track.value);
   }
 
@@ -25,8 +25,6 @@ export const useTrackStore = defineStore('trackStore', () => {
   const postdata = async (name, bg, lg, bj) => {
     await axios.post(base_url + '/track', name, bg, lg, bj);
   };
-
-  fetchdata();
 
   return { track, fetchdata, deletedata, patchdata, postdata };
 });

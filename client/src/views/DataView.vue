@@ -1,12 +1,9 @@
 <script>
 import { useTrackStore } from '../stores/trackStore.js';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 
 const store = useTrackStore();
-
-// onMounted(() => {
-//   store.fetchdata();
-// });
+store.fetchdata();
 
 const columns = [
   { name: 'name', required: true, label: 'Name', align: 'center', field: 'name' },
