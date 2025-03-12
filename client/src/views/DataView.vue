@@ -14,14 +14,12 @@ const columns = [
   { name: 'actions', align: 'center', label: 'Actions'}
 ]
 
-// Dialog-Variablen für Track-Änderungen
 const showChangeDialog = ref(false);
 const showNewDialog = ref(false);
 const selectedTrack = ref(null);
 const newTrackData = ref({ name: '', breitengrad: '', laengengrad: '', baujahr: '' });
 const newTrackName = ref('');
 
-// Track-Namen ändern
 function openChangeDialog(track) {
   selectedTrack.value = track;
   newTrackName.value = track.name;
@@ -39,7 +37,6 @@ function deleteTrack (track) {
   store.deletedata(track);
 };
 
-// Neuen Track erstellen
 function openNewDialog() {
   newTrackData.value = { name: '', breitengrad: '', laengengrad: '', baujahr: '' };
   showNewDialog.value = true;
@@ -63,18 +60,42 @@ function confirmNewTrack() {
       :rows="store.track"
       :columns="columns"
       row-key="id"
+      responsive
+      class="my-sticky-header-table"
+      :pagination="{ rowsPerPage: 10 }"
+      :grid="$q.screen.lt.md"
     >
+
+      <template v-slot:item="props">
+        <div class="q-pa-xs col-xs-12 col-sm-6 col-md-4" v-if="$q.screen.lt.md">
+          <q-card flat bordered>
+            <q-card-section>
+              <div class="text-h6">{{ props.row.name || 'Track' }}</div>
+            {{ props.row.breitengrad }}
+            {{ props.row.laengengrad }}
+            {{ props.row.baujahr }}
+            </q-card-section>
+            <q-separator />
+            <q-card-actions>
+              <q-btn color="secondary" dense @click="deleteTrack(props.row)">Löschen</q-btn>
+              <q-btn color="quaternary" icon="edit" dense @click="openChangeDialog(props.row)">Ändern</q-btn>
+              <q-btn color="tertiary" dense @click="openNewDialog">Neuen Track</q-btn>
+            </q-card-actions>
+          </q-card>
+        </div>
+      </template>
 
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
-          <q-btn color="secondary" class="q-mx-md" @click="deleteTrack(props.row)">Löschen</q-btn>
-          <q-btn color="quaternary" icon="edit" class="q-mx-md" @click="openChangeDialog(props.row)">Ändern</q-btn>
-          <q-btn color="tertiary" class="q-mx-md" @click="openNewDialog">Neuen Track hinzufügen</q-btn>
+          <div class="row no-wrap q-gutter-sm justify-center">
+            <q-btn color="secondary" @click="deleteTrack(props.row)">Löschen</q-btn>
+            <q-btn color="quaternary" icon="edit" @click="openChangeDialog(props.row)">Ändern</q-btn>
+            <q-btn color="tertiary" @click="openNewDialog">Neuen Track</q-btn>
+          </div>
         </q-td>
       </template>
     </q-table>
 
-     <!-- Dialog: Track Name ändern -->
     <q-dialog v-model="showChangeDialog">
       <q-card>
         <q-card-section>
@@ -90,7 +111,6 @@ function confirmNewTrack() {
       </q-card>
     </q-dialog>
 
-    <!-- Dialog: Neuen Track erstellen -->
     <q-dialog v-model="showNewDialog">
       <q-card>
         <q-card-section>

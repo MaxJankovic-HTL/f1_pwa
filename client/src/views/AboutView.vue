@@ -1,6 +1,6 @@
 <template>
-  <div class="row justify-center q-mt-md">
-    <span class="text-h4">Impressum</span><br />
-    Implementiert von Maximilian Jankovic &copy; HTL Wien West, 2024
+  <div class="column items-center q-mt-md text-center">
+    <span class="text-h4">Impressum</span>
+    <span class="text-subtitle1">Implementiert von Maximilian Jankovic &copy; HTL Wien West, 2024</span>
   </div>
 </template>

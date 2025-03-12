@@ -43,6 +43,6 @@ function initMap() {
 
 <template>
   <div class="column items-center q-mt-md">
-    <div id="map" style="height: 500px; width: 90%; border-radius: 10px;"></div>
+    <div id="map" style="height: 1000px; width: 90%; border-radius: 10px;"></div>
   </div>
 </template>
