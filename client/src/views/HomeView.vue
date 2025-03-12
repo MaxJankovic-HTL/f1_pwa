@@ -1,37 +1,55 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
-let target;
-let watchId;
-
-function appendLocation(location, verb = 'updated') {
-  const newLocation = document.createElement('p');
-  newLocation.innerHTML = `Location ${verb}: ${location.coords.latitude}, ${location.coords.longitude}`;
-  target.appendChild(newLocation);
-}
+const map = ref(null);
+const userMarker = ref(null);
+const userPosition = ref({ lat: 0, lng: 0 });
 
 onMounted(() => {
-  target = document.getElementById('target');
-  const askButton = document.getElementById('askButton');
-
-  if (!askButton) return;
-
-  if ('geolocation' in navigator) {
-    askButton.addEventListener('click', () => {
-      navigator.geolocation.getCurrentPosition((location) => {
-        appendLocation(location, 'fetched');
-      });
-      watchId = navigator.geolocation.watchPosition(appendLocation);
-    });
-  } else {
-    target.innerText = 'Geolocation API not supported.';
+  if (!navigator.geolocation) {
+    alert('Geolocation wird nicht unterstützt.');
+    return;
   }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      userPosition.value = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      initMap();
+    },
+    (error) => {
+      console.error("Fehler beim Abrufen der Position:", error);
+      alert('Konnte Standort nicht abrufen.');
+    }
+  );
 });
+
+function initMap() {
+  map.value = L.map('map').setView([userPosition.value.lat, userPosition.value.lng], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+  }).addTo(map.value);
+
+  userMarker.value = L.marker([userPosition.value.lat, userPosition.value.lng]).addTo(map.value)
+    .bindPopup('Du bist hier!')
+    .openPopup();
+}
 </script>
 
 <template>
   <div class="column items-center q-mt-md">
-    <button id="askButton">Ask for location</button>
-    <div id="target"></div>
+    <div id="map" style="height: 500px; width: 100%; border-radius: 10px;"></div>
   </div>
 </template>
+
+<style>
+#map {
+  width: 100%;
+  height: 500px;
+}
+</style>
