@@ -1,0 +1,1 @@
+import{s,c as o,a,t as c,o as n,v as r}from"./index-CGkosCdl.js";const u={class:"row justify-center q-mt-md"},_={class:"text-h4"},m={__name:"NotFoundView",setup(p){const t=r(),e=s(()=>t.path);return(d,i)=>(n(),o("div",u,[a("span",_,'Route "'+c(e.value)+'" Not Found ',1)]))}};export{m as default};
